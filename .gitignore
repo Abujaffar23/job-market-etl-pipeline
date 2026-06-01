@@ -1,3 +1,4 @@
 .env
 file_logs.log
 windows_cron_log.txt
+linkdin_job_data
