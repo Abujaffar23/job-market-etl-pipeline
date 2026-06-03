@@ -21,10 +21,18 @@ def transform_data(df):
           logging.info(f"len of Data after dropping duplicate {len(df)}")
     
           df["date_posted"] = pd.to_datetime(df["date_posted"])
+          
+          df["date_validthrough"] = pd.to_datetime(df["date_validthrough"])
         
           df["organization"] = df["organization"].fillna("unknown")
+          
     
-          df["Country_location"] = df["Country_location"].replace({"GB":"UK"})
+          df["Country_Location"] = df["Country_Location"].replace({"GB":"UK"})
+          
+          uk_condition = (df["AddressLocality"] == "United Kingdom")
+          
+          df.loc[uk_condition, "Country_Location"] = "UK"
+              
           
           df.columns = df.columns.str.lower()
     
@@ -38,7 +46,7 @@ def transform_data(df):
           
           logging.info(f"Transformation complete. Rows remaining: {len(df)}")
           
-          #print(df)
+        
           
           return df 
       
