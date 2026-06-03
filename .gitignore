@@ -1,3 +1,6 @@
 .env
 file_logs.log
 linkdin_job_data
+run_etl.bat
+__pycache__
+windows_cron_log.txt
