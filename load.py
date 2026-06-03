@@ -2,6 +2,7 @@ import os
 import pandas as pd 
 import logging
 from dotenv import load_dotenv
+from sqlalchemy import BigInteger, Column, String
 from sqlalchemy import create_engine, text
 
 load_dotenv()
@@ -13,9 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 engine=create_engine(os.getenv("db_connection"))
 
 
-from sqlalchemy import text
-import pandas as pd
-import logging
+#id = Column(BigInteger, primary_key=True)
 
 def upsert_table(df, table_name, connection):
     unique_ids = tuple(df['id'].tolist())
@@ -64,11 +63,11 @@ def load_data(df):
             org_df = df[["id", "organization", "organization_url"]].drop_duplicates(subset=['id']).copy()
             upsert_table(org_df, "Organization", connection)
             
-            logging.info("Loading Data into organixayion Table Successful")
+            logging.info("Loading Data into organization Table Successful")
             
-            location_df = df[["id", "country_location", 'address_locality']].drop_duplicates(subset=['id']).copy()
+            location_df = df[["id", "country_location", 'addresslocality']].drop_duplicates(subset=['id']).copy()
             
-            location_df.rename(columns={"country_location": "Country_Location", "address_locality":"address_locality" }, inplace=True)
+            location_df.rename(columns={"country_location": "Country_Location", "addresslocality":"address_locality"}, inplace=True)
             upsert_table(location_df, "Job_location", connection)
             
             logging.info("Loading Data into Job_location Table Successful")
