@@ -86,7 +86,6 @@ def extract_data():
         return None
         
 raw_dataframe = extract_data()
-print(raw_dataframe)
  
 
 
