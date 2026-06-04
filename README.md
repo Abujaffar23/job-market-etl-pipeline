@@ -51,7 +51,7 @@ Primary and foreign keys were used to maintain data integrity and prevent duplic
 
 ## Data Transformation
 
-![Data Manipulation using sql](image/Data_manipulation.png)
+![Data Manipulation using sql](images/Data_manipulation.png)
 
 Transformation tasks performed include:
 
@@ -62,7 +62,7 @@ Transformation tasks performed include:
 
 ## Data Joining Process
 
-![Joining Process](image/Joining.png)
+![Joining Process](images/Joining.png)
 
 Multiple tables were combined in the database.
 
@@ -70,7 +70,7 @@ Multiple tables were combined in the database.
 
 ## Logging and Monitoring
 
-![Logs](image/file-logs.png)
+![Logs](images/file-logs.png)
 
 Logging was implemented to:
 
