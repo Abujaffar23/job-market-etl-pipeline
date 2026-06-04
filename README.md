@@ -51,14 +51,12 @@ Primary and foreign keys were used to maintain data integrity and prevent duplic
 
 ## Data Transformation
 
-![Data Manipulation using sql](images/Data_manipulation.png)
+![Data Manipulation using sql](image/Data_manipulation.png)
 
 Transformation tasks performed include:
 
- 
 * Creating a new column
-* Data manipulation with sql
-
+* Data manipulation with SQL
 
 ---
 
@@ -66,7 +64,7 @@ Transformation tasks performed include:
 
 ![Joining Process](image/Joining.png)
 
-Multiple Tables were combined in database.
+Multiple tables were combined in the database.
 
 ---
 
@@ -113,7 +111,6 @@ The ETL pipeline is scheduled using Windows Task Scheduler and runs every 5 minu
 
 ## Author
 
-Rabiu Abdulgafar Eniola
+**Rabiu Abdulgafar Eniola**
 
 Aspiring Data Engineer | Python | SQL | ETL | Power BI
-
