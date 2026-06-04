@@ -2,7 +2,6 @@ import os
 import pandas as pd 
 import logging
 from dotenv import load_dotenv
-from sqlalchemy import BigInteger, Column, String
 from sqlalchemy import create_engine, text
 
 load_dotenv()
@@ -14,8 +13,6 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 engine=create_engine(os.getenv("db_connection"))
 
 
-#id = Column(BigInteger, primary_key=True)
-
 def upsert_table(df, table_name, connection):
     unique_ids = tuple(df['id'].tolist())
     
@@ -23,10 +20,8 @@ def upsert_table(df, table_name, connection):
         return
 
     try:
-        # 1. Mute safety checks on the current active connection channel
         connection.execute(text("SET FOREIGN_KEY_CHECKS = 0;"))
         
-        # 2. Execute the Delete stage safely
         if len(unique_ids) == 1:
             delete_query = text(f"DELETE FROM {table_name} WHERE id = :id_vals")
             connection.execute(delete_query, {"id_vals": unique_ids[0]})
@@ -34,12 +29,11 @@ def upsert_table(df, table_name, connection):
             delete_query = text(f"DELETE FROM {table_name} WHERE id IN :id_vals")
             connection.execute(delete_query, {"id_vals": unique_ids})
         
-        # 3. FIX: Pass 'con=connection' instead of 'connection.engine'
-        # This keeps pandas trapped inside our zero-constraint transaction block!
+        
         df.to_sql(table_name, con=connection, if_exists='append', index=False)
         
     finally:
-        # 4. Turn checks back on safely
+
         connection.execute(text("SET FOREIGN_KEY_CHECKS = 1;"))
         
         
